@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# MediaPipe model (can be re-downloaded, but usually keep it)
+# backend/hand_landmarker.task
+
+# Test outputs
+test_output/
+screenshots/
+
+# Saved creations (optional - users may want to track these)
+# *.json
+
+# Jupyter Notebooks (if you add any)
+.ipynb_checkpoints/
+*.ipynb

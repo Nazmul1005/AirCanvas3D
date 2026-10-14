@@ -1,0 +1,11 @@
+# AirCanvas 3D - Python Dependencies
+
+# Computer vision and hand tracking
+opencv-python==4.10.0.84
+mediapipe==0.10.35
+
+# WebSocket server
+websockets==12.0
+
+# NumPy (required by OpenCV and MediaPipe)
+numpy==1.26.4

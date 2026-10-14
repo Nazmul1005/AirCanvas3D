@@ -1,0 +1,432 @@
+/* AirCanvas 3D - Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow: hidden;
+    background: #0a0a0a;
+    color: #ffffff;
+}
+
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Status Badges */
+.status-badge {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #333;
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff4444;
+    animation: pulse 2s infinite;
+}
+
+.status-badge.connected .status-dot {
+    background: #44ff44;
+}
+
+.status-badge.connecting .status-dot {
+    background: #ffaa44;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.info-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 8px 16px;
+    z-index: 100;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+/* Gesture Indicator */
+.gesture-badge {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 12px 16px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    min-width: 120px;
+}
+
+.gesture-icon {
+    font-size: 32px;
+    margin-bottom: 4px;
+}
+
+.gesture-label {
+    font-size: 12px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Webcam Preview */
+.webcam-pip {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 240px;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.webcam-pip.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#webcam-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pip-toggle {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.pip-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Toolbar */
+.toolbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #333;
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 32px;
+    background: #333;
+}
+
+.tool-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.tool-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #666;
+    transform: translateY(-2px);
+}
+
+.tool-button.active {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: #00ffff;
+}
+
+.tool-button.danger:hover {
+    background: rgba(255, 68, 68, 0.2);
+    border-color: #ff4444;
+}
+
+.tool-icon {
+    font-size: 20px;
+}
+
+.tool-label {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#color-picker {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.slider-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.slider-label {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="range"] {
+    width: 80px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #00ffff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #00ffff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Tutorial Overlay */
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.tutorial-overlay.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tutorial-content {
+    max-width: 800px;
+    padding: 40px;
+    text-align: center;
+}
+
+.tutorial-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #00ffff;
+}
+
+.tutorial-content p {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.tutorial-gestures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.tutorial-gesture {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.tutorial-gesture:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00ffff;
+    transform: translateY(-4px);
+}
+
+.gesture-demo {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.tutorial-gesture h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.tutorial-gesture p {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0;
+}
+
+.tutorial-tip {
+    background: rgba(255, 170, 0, 0.1);
+    border: 2px solid #ffaa00;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #ffaa00;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #00ffff, #0088ff);
+    border: none;
+    border-radius: 12px;
+    padding: 16px 48px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 255, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .toolbar {
+        bottom: 10px;
+        padding: 8px 12px;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .tool-button {
+        padding: 8px 12px;
+    }
+
+    .tool-label {
+        display: none;
+    }
+
+    .webcam-pip {
+        width: 160px;
+        height: 120px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .tutorial-content {
+        padding: 20px;
+    }
+
+    .tutorial-content h2 {
+        font-size: 24px;
+    }
+
+    .tutorial-gestures {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+/* Accessibility */
+button:focus,
+input:focus {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

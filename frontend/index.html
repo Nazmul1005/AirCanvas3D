@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirCanvas 3D - Gesture-Controlled Virtual Construction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Connection Status Badge -->
+    <div id="connection-status" class="status-badge disconnected">
+        <span class="status-dot"></span>
+        <span class="status-text">Disconnected</span>
+    </div>
+
+    <!-- FPS Counter -->
+    <div id="fps-counter" class="info-badge">FPS: --</div>
+
+    <!-- Gesture Indicator -->
+    <div id="gesture-indicator" class="gesture-badge">
+        <div class="gesture-icon">✋</div>
+        <div class="gesture-label">No Hand</div>
+    </div>
+
+    <!-- Webcam Preview (Picture-in-Picture) -->
+    <div id="webcam-preview" class="webcam-pip">
+        <canvas id="webcam-canvas"></canvas>
+        <button id="toggle-webcam" class="pip-toggle" title="Toggle webcam preview">
+            👁️
+        </button>
+    </div>
+
+    <!-- Toolbar -->
+    <div id="toolbar" class="toolbar">
+        <div class="toolbar-section">
+            <button id="tool-draw" class="tool-button active" title="Draw mode (Index finger)">
+                <span class="tool-icon">✏️</span>
+                <span class="tool-label">Draw</span>
+            </button>
+            <button id="tool-blocks" class="tool-button" title="Block mode (Pinch to place)">
+                <span class="tool-icon">🧱</span>
+                <span class="tool-label">Blocks</span>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-section">
+            <label class="tool-button" title="Stroke color">
+                <span class="tool-icon">🎨</span>
+                <input type="color" id="color-picker" value="#00ffff">
+            </label>
+            
+            <div class="slider-control">
+                <label for="brush-size" class="slider-label">Size</label>
+                <input type="range" id="brush-size" min="0.02" max="0.2" step="0.02" value="0.08">
+            </div>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-section">
+            <button id="undo-btn" class="tool-button" title="Undo (Ctrl+Z)">
+                <span class="tool-icon">↶</span>
+            </button>
+            <button id="redo-btn" class="tool-button" title="Redo (Ctrl+Y)">
+                <span class="tool-icon">↷</span>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-section">
+            <button id="clear-btn" class="tool-button danger" title="Clear all">
+                <span class="tool-icon">🗑️</span>
+            </button>
+            <button id="save-btn" class="tool-button" title="Save as JSON">
+                <span class="tool-icon">💾</span>
+            </button>
+            <button id="load-btn" class="tool-button" title="Load from JSON">
+                <span class="tool-icon">📂</span>
+            </button>
+            <input type="file" id="load-input" accept=".json" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Tutorial Overlay -->
+    <div id="tutorial-overlay" class="tutorial-overlay">
+        <div class="tutorial-content">
+            <h2>Welcome to AirCanvas 3D! 🎨</h2>
+            <p>Control the 3D canvas with hand gestures:</p>
+            
+            <div class="tutorial-gestures">
+                <div class="tutorial-gesture">
+                    <div class="gesture-demo">✏️</div>
+                    <h3>Draw</h3>
+                    <p>Extend index finger, curl others</p>
+                </div>
+                
+                <div class="tutorial-gesture">
+                    <div class="gesture-demo">🤏</div>
+                    <h3>Pinch / Grab</h3>
+                    <p>Touch thumb and index finger</p>
+                </div>
+                
+                <div class="tutorial-gesture">
+                    <div class="gesture-demo">✋</div>
+                    <h3>Erase</h3>
+                    <p>Open palm with spread fingers</p>
+                </div>
+                
+                <div class="tutorial-gesture">
+                    <div class="gesture-demo">✊</div>
+                    <h3>Idle</h3>
+                    <p>Close fist to pause</p>
+                </div>
+            </div>
+
+            <div class="tutorial-tip">
+                💡 <strong>Tip:</strong> Use two hands pinching simultaneously to scale and rotate the scene!
+            </div>
+            
+            <button id="start-btn" class="start-button">Start Creating!</button>
+        </div>
+    </div>
+
+    <!-- Three.js Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Load Three.js and modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <!-- Load application modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
