@@ -29,7 +29,7 @@ jobs:
     
     - name: Check Python syntax
       run: |
-        python -m py_compile backend/*.py
+        python -m compileall backend/ -q
     
     - name: Display installed packages
       run: |
